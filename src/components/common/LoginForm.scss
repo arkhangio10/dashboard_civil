@@ -1,0 +1,46 @@
+/* src/components/common/LoginForm.scss */
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-logo {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+.auth-message {
+  margin-top: 15px;
+  color: #dc3545;
+  text-align: center;
+  min-height: 24px;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.btn-primary {
+  background-color: #184e8e;
+  border-color: #184e8e;
+  
+  &:hover {
+    background-color: darken(#184e8e, 10%);
+    border-color: darken(#184e8e, 10%);
+  }
+  
+  &:disabled {
+    background-color: lighten(#184e8e, 20%);
+    border-color: lighten(#184e8e, 20%);
+  }
+}

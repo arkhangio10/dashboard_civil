@@ -1,0 +1,49 @@
+/* src/components/common/KpiCard/KpiCard.scss */
+.stat-card {
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+  
+  .stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  .trend {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    
+    i {
+      margin-right: 3px;
+    }
+  }
+  
+  .trend-up {
+    color: #28a745;
+  }
+  
+  .trend-down {
+    color: #dc3545;
+  }
+}

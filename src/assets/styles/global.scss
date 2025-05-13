@@ -1,0 +1,147 @@
+/* src/assets/styles/global.scss */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+:root {
+  --primary: #184e8e;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --info: #17a2b8;
+  --light: #f8f9fa;
+  --dark: #343a40;
+}
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+  border: none;
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+.chart-container {
+  height: 300px;
+  position: relative;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: var(--primary);
+  
+  &::after {
+    content: "";
+    width: 25px;
+    height: 25px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.company-header {
+  background-color: #012996d2;
+  color: white;
+  padding: 10px 15px;
+  text-align: left;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container {
+  margin-top: 30px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.user-email {
+  font-weight: 500;
+}
+
+// Clases para estados de avance
+.productivity-high {
+  color: var(--success);
+}
+
+.productivity-mid {
+  color: var(--warning);
+}
+
+.productivity-low {
+  color: var(--danger);
+}
+
+// Clases para categorías
+.category-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.category-operario {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: var(--success);
+}
+
+.category-oficial {
+  background-color: rgba(23, 162, 184, 0.2);
+  color: var(--info);
+}
+
+.category-peon {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #d39e00;
+}
+
+.category-otros {
+  background-color: rgba(108, 117, 125, 0.2);
+  color: var(--secondary);
+}
+
+// Tabs
+.nav-pills .nav-link.active {
+  background-color: var(--primary);
+}
+
+.nav-pills .nav-link {
+  color: var(--dark);
+  border-radius: 5px;
+  padding: 8px 15px;
+}
+
+.tab-content {
+  padding-top: 20px;
+}

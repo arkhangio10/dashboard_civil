@@ -1,0 +1,51 @@
+/* src/components/common/FilterBar/FilterBar.scss */
+.filter-section {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+  
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .form-select, 
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
+    
+    &:focus {
+      border-color: #184e8e;
+      box-shadow: 0 0 0 0.2rem rgba(24, 78, 142, 0.25);
+    }
+    
+    &:disabled {
+      background-color: #e9ecef;
+      opacity: 0.65;
+    }
+  }
+  
+  .btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+    
+    &:hover {
+      color: #fff;
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+  }
+  
+  .btn-primary {
+    background-color: #184e8e;
+    border-color: #184e8e;
+    
+    &:hover {
+      background-color: darken(#184e8e, 10%);
+      border-color: darken(#184e8e, 10%);
+    }
+  }
+}

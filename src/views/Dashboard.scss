@@ -1,0 +1,46 @@
+/* src/views/Dashboard.scss */
+.dashboard-container {
+  margin-top: 30px;
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-pills {
+    margin-bottom: 1.5rem;
+
+    .nav-link {
+      border-radius: 5px;
+      padding: 8px 15px;
+      margin-right: 5px;
+      color: var(--dark);
+      
+      &.active {
+        background-color: var(--primary);
+        color: white;
+      }
+      
+      &:hover:not(.active) {
+        background-color: rgba(24, 78, 142, 0.1);
+      }
+      
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .tab-content {
+    padding-top: 1.5rem;
+  }
+
+  // Loading placeholders
+  .placeholder-glow {
+    .placeholder {
+      background-color: rgba(24, 78, 142, 0.2);
+      cursor: wait;
+    }
+  }
+}

@@ -1,0 +1,92 @@
+/* src/components/dashboard/TabManoObra.scss */
+.tab-pane {
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0;
+    
+    .loader {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(24, 78, 142, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-top: 10px;
+      color: var(--primary);
+      font-size: 16px;
+    }
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 300px;
+  }
+  
+  .table {
+    th, td {
+      vertical-align: middle;
+      padding: 10px 15px;
+    }
+    
+    th {
+      background-color: rgba(24, 78, 142, 0.05);
+      font-weight: 600;
+    }
+  }
+  
+  .category-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-right: 5px;
+  }
+  
+  .category-operario {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: var(--success);
+  }
+  
+  .category-oficial {
+    background-color: rgba(23, 162, 184, 0.2);
+    color: var(--info);
+  }
+  
+  .category-peon {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #d39e00;
+  }
+  
+  .category-otros {
+    background-color: rgba(108, 117, 125, 0.2);
+    color: var(--secondary);
+  }
+  
+  .productivity-high {
+    color: var(--success);
+    font-weight: 500;
+  }
+  
+  .productivity-mid {
+    color: var(--warning);
+    font-weight: 500;
+  }
+  
+  .productivity-low {
+    color: var(--danger);
+    font-weight: 500;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
