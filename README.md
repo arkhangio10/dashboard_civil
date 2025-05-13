@@ -1,54 +1,97 @@
-# React + TypeScript + Vite
+# Hergonsa Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es un dashboard para la gestión de reportes de construcción y análisis de KPIs.
 
-Currently, two official plugins are available:
+## Tecnologías utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 18
+- TypeScript
+- Vite
+- Firebase (Firestore y Authentication)
+- Chart.js
+- SASS para estilos
+- React Router para navegación
 
-## Expanding the ESLint configuration
+## Requisitos previos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js (versión 16 o superior)
+- npm o yarn
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Instalación
+
+1. Clona este repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/hergonsa-dashboard.git
+cd hergonsa-dashboard
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Instala las dependencias:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
+# o
+yarn install
 ```
+
+3. Configura las variables de entorno:
+
+Crea un archivo `.env.local` en la raíz del proyecto con el siguiente contenido:
+
+```
+VITE_FIREBASE_API_KEY=tu-api-key
+VITE_FIREBASE_AUTH_DOMAIN=tu-auth-domain
+VITE_FIREBASE_PROJECT_ID=tu-project-id
+VITE_FIREBASE_STORAGE_BUCKET=tu-storage-bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=tu-messaging-sender-id
+VITE_FIREBASE_APP_ID=tu-app-id
+```
+
+> Nota: Si decides mantener la configuración de Firebase directamente en el código, puedes omitir este paso.
+
+## Ejecución
+
+Para iniciar el servidor de desarrollo:
+
+```bash
+npm run dev
+# o
+yarn dev
+```
+
+La aplicación estará disponible en `http://localhost:3000`
+
+## Compilación para producción
+
+Para generar la versión de producción:
+
+```bash
+npm run build
+# o
+yarn build
+```
+
+Los archivos compilados estarán en la carpeta `dist`.
+
+## Estructura del proyecto
+
+- `/src/assets`: Imágenes, iconos y estilos globales
+- `/src/components`: Componentes reutilizables
+- `/src/contexts`: Contextos de React, incluyendo AuthContext
+- `/src/hooks`: Hooks personalizados como useKPIData
+- `/src/services`: Configuración de servicios externos (Firebase)
+- `/src/utils`: Utilidades y funciones auxiliares
+- `/src/views`: Páginas principales de la aplicación
+
+## Características
+
+- Autenticación de usuarios con Firebase
+- Dashboard con múltiples pestañas para análisis de datos
+- Visualización de datos con gráficos y tablas
+- Filtrado de datos por fecha, subcontratista, categoría, etc.
+- Análisis de KPIs de construcción
+- Sistema de caché para mejorar el rendimiento
+
+## Licencia
+
+Este proyecto es privado y confidencial.

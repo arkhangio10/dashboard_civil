@@ -1,4 +1,3 @@
-// src/hooks/useKPIData.ts
 import { useState, useEffect } from 'react';
 import { collection, query, where, getDocs, DocumentData } from 'firebase/firestore';
 import { db } from '../services/firebase';

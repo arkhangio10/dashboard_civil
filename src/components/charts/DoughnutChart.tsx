@@ -1,4 +1,3 @@
-// src/components/charts/DoughnutChart.tsx
 import React from 'react';
 import { 
   Chart as ChartJS, 
@@ -8,7 +7,6 @@ import {
 } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
-// Registrar los componentes de Chart.js
 ChartJS.register(
   ArcElement,
   Tooltip,
