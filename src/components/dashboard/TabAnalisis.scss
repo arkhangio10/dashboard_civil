@@ -1,0 +1,103 @@
+/* src/components/dashboard/TabAnalisis.scss */
+.tab-pane {
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0;
+    
+    .loader {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(24, 78, 142, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-top: 10px;
+      color: var(--primary);
+      font-size: 16px;
+    }
+  }
+  
+  .correlation-legend {
+    font-size: 0.85rem;
+    padding: 10px 0;
+    
+    .correlation-strong, 
+    .correlation-medium, 
+    .correlation-weak {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+    }
+    
+    .correlation-strong {
+      background-color: var(--success);
+    }
+    
+    .correlation-medium {
+      background-color: var(--warning);
+    }
+    
+    .correlation-weak {
+      background-color: var(--secondary);
+    }
+  }
+  
+  .form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+  
+  .analysis-insights {
+    h6 {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    p {
+      margin-bottom: 1rem;
+      padding-left: 10px;
+      border-left: 3px solid rgba(24, 78, 142, 0.2);
+    }
+    
+    ul {
+      margin-bottom: 0;
+      
+      li {
+        margin-bottom: 10px;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  .table {
+    th, td {
+      vertical-align: middle;
+      padding: 10px 15px;
+    }
+    
+    th {
+      background-color: rgba(24, 78, 142, 0.05);
+      font-weight: 600;
+    }
+  }
+  
+  .chart-container {
+    position: relative;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
