@@ -1,0 +1,41 @@
+/* src/components/common/Pagination/Pagination.scss */
+@import "../../../assets/styles/variables.scss";
+
+.pagination-container {
+  margin: 1rem 0;
+  
+  .pagination {
+    margin-bottom: 0;
+    
+    .page-item {
+      &.active .page-link {
+        background-color: var(--primary);
+        border-color: var(--primary);
+      }
+      
+      &.disabled .page-link {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: #fff;
+        border-color: #dee2e6;
+      }
+      
+      .page-link {
+        color: var(--primary);
+        
+        &:hover {
+          background-color: rgba(24, 78, 142, 0.1);
+          border-color: rgba(24, 78, 142, 0.2);
+        }
+        
+        &:focus {
+          box-shadow: 0 0 0 0.2rem rgba(24, 78, 142, 0.25);
+        }
+      }
+    }
+  }
+  
+  .pagination-info {
+    color: #6c757d;
+  }
+}

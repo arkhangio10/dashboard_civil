@@ -1,11 +1,14 @@
 // src/components/dashboard/TabReportes.tsx
 import React, { useState } from 'react';
 import { ReportDetail } from '../../hooks/useKPIData';
+import { PaginationInfo } from '../../hooks/useKPIData';
 import './TabReportes.scss';
 
 interface TabReportesProps {
   reports: ReportDetail[];
   loading: boolean;
+  pagination: PaginationInfo;
+  onRefresh: () => Promise<void>;
 }
 
 interface ReportModalData {
@@ -13,12 +16,20 @@ interface ReportModalData {
   show: boolean;
 }
 
-const TabReportes: React.FC<TabReportesProps> = ({ reports, loading }) => {
+const TabReportes: React.FC<TabReportesProps> = ({ 
+  reports, 
+  loading, 
+  pagination,
+  onRefresh 
+}) => {
   // Estado para el modal de detalles del reporte
   const [modalData, setModalData] = useState<ReportModalData>({
     report: null,
     show: false
   });
+  
+  // Estado para el proceso de actualización
+  const [refreshing, setRefreshing] = useState(false);
 
   // Función para ver detalles de un reporte
   const viewReportDetails = (report: ReportDetail) => {
@@ -34,6 +45,16 @@ const TabReportes: React.FC<TabReportesProps> = ({ reports, loading }) => {
       report: null,
       show: false
     });
+  };
+  
+  // Función para actualizar datos manualmente
+  const handleRefresh = async () => {
+    try {
+      setRefreshing(true);
+      await onRefresh();
+    } finally {
+      setRefreshing(false);
+    }
   };
 
   // Si está cargando, mostrar placeholders
@@ -110,8 +131,29 @@ const TabReportes: React.FC<TabReportesProps> = ({ reports, loading }) => {
   return (
     <div className="tab-pane fade show active" id="reports">
       <div className="card">
-        <div className="card-header">
+        <div className="card-header d-flex justify-content-between align-items-center">
           <h5>Listado de Reportes</h5>
+          <div>
+            <span className="me-3">
+              Mostrando {reports.length} de {pagination.totalItems} reportes
+            </span>
+            <button 
+              className="btn btn-sm btn-outline-primary" 
+              onClick={handleRefresh}
+              disabled={refreshing}
+            >
+              {refreshing ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                  Actualizando...
+                </>
+              ) : (
+                <>
+                  <i className="fas fa-sync-alt me-1"></i> Actualizar
+                </>
+              )}
+            </button>
+          </div>
         </div>
         <div className="card-body p-0">
           <div className="table-responsive">

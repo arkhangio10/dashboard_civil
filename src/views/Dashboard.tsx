@@ -1,5 +1,5 @@
 // src/views/Dashboard.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import useKPIData, { FilterValues } from '../hooks/useKPIData';
@@ -11,6 +11,7 @@ import TabManoObra from '../components/dashboard/TabManoObra';
 import TabActividades from '../components/dashboard/TabActividades';
 import TabAnalisis from '../components/dashboard/TabAnalisis';
 import TabReportes from '../components/dashboard/TabReportes';
+import Pagination from '../components/common/Pagination/Pagination';
 import './Dashboard.scss';
 
 const Dashboard: React.FC = () => {
@@ -22,7 +23,7 @@ const Dashboard: React.FC = () => {
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(today.getDate() - 30);
   
-  // Estado para los filtros
+  // Estado para los filtros con paginación
   const [filters, setFilters] = useState<FilterValues>({
     dateRange: {
       start: thirtyDaysAgo,
@@ -31,18 +32,57 @@ const Dashboard: React.FC = () => {
     predefinedPeriod: '30',
     subcontratista: '',
     elaboradoPor: '',
-    categoria: ''
+    categoria: '',
+    page: 1, // Página inicial
+    pageSize: 10 // Número de reportes por página
   });
   
   // Estado para la pestaña activa
   const [activeTab, setActiveTab] = useState('overview');
   
-  // Obtener datos con el hook personalizado
-  const { reports, loading, error, filterOptions, metrics } = useKPIData(filters);
+  // Obtener datos con el hook personalizado optimizado
+  const { 
+    reports, 
+    loading, 
+    error, 
+    filterOptions, 
+    metrics, 
+    pagination,
+    loadNextPage,
+    loadPrevPage,
+    refresh
+  } = useKPIData(filters);
+  
+  // Efecto para reiniciar la paginación cuando cambian los filtros principales
+  useEffect(() => {
+    // Reiniciar paginación al cambiar filtros
+    setFilters(prev => ({
+      ...prev,
+      page: 1
+    }));
+  }, [
+    filters.dateRange.start, 
+    filters.dateRange.end, 
+    filters.subcontratista, 
+    filters.elaboradoPor, 
+    filters.categoria
+  ]);
   
   // Manejar cambio de filtros
-  const handleFilterChange = (newFilters: FilterValues) => {
-    setFilters(newFilters);
+  const handleFilterChange = (newFilters: Omit<FilterValues, 'page' | 'pageSize'>) => {
+    setFilters({
+      ...newFilters,
+      page: 1, // Reiniciar a primera página al aplicar nuevos filtros
+      pageSize: filters.pageSize
+    });
+  };
+  
+  // Manejar cambio de página
+  const handlePageChange = (newPage: number) => {
+    setFilters(prev => ({
+      ...prev,
+      page: newPage
+    }));
   };
   
   // Manejar cierre de sesión
@@ -155,6 +195,20 @@ const Dashboard: React.FC = () => {
         </li>
       </ul>
       
+      {/* Paginación para Reportes (solo visible en la pestaña de reportes) */}
+      {activeTab === 'reports' && reports.length > 0 && (
+        <div className="row mb-3">
+          <div className="col-12">
+            <Pagination 
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              onPageChange={handlePageChange}
+              loading={loading}
+            />
+          </div>
+        </div>
+      )}
+      
       {/* Contenido de pestañas */}
       <div className="tab-content" id="dashboardTabContent">
         {/* Pestaña de Visión General */}
@@ -164,7 +218,28 @@ const Dashboard: React.FC = () => {
         
         {/* Pestaña de Reportes */}
         {activeTab === 'reports' && (
-          <TabReportes reports={reports} loading={loading} />
+          <>
+            <TabReportes 
+              reports={reports} 
+              loading={loading}
+              pagination={pagination}
+              onRefresh={refresh}
+            />
+            
+            {/* Paginación inferior */}
+            {reports.length > 0 && (
+              <div className="row mt-3">
+                <div className="col-12">
+                  <Pagination 
+                    currentPage={pagination.currentPage}
+                    totalPages={pagination.totalPages}
+                    onPageChange={handlePageChange}
+                    loading={loading}
+                  />
+                </div>
+              </div>
+            )}
+          </>
         )}
         
         {/* Pestaña de Actividades */}

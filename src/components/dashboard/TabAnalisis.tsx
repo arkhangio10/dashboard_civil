@@ -504,7 +504,7 @@ const TabAnalisis: React.FC<TabAnalisisProps> = ({ reports, loading }) => {
                   </div>
                   <div className="d-flex align-items-center">
                     <div className="correlation-weak me-2"></div>
-                    <span>Correlación Débil (< 0.4): Poca o ninguna relación</span>
+                    <span>Correlación Débil (&lt 0.4): Poca o ninguna relación</span>
                   </div>
                 </div>
               </div>
